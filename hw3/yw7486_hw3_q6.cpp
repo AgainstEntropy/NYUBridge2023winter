@@ -19,8 +19,6 @@ int main()
     cout << "Please enter the duration of the call: ";
     cin >> numOfMinutes;
 
-    // cout << timeString << endl;
-
     double cost;
     if ((day == "Sa") || (day == "Su"))
     {
@@ -28,8 +26,9 @@ int main()
     }
     else
     {
-        double time = hour + minute / 60.0;
-        
+        double time = hour + minute;
+        cout << hour << " " << minute << " " << time << endl;
+
         cost = numOfMinutes * (((time < 8) || (time > 18)) ? BILL2 : BILL3);
     }
 
