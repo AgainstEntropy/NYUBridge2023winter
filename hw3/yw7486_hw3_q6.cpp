@@ -7,17 +7,19 @@ const double BILL1 = 0.4,
 
 int main()
 {
-    string day, timeString;
-    int numOfMinutes;
+    string day;
+    int numOfMinutes, hour;
+    double minute;
+    char sep;
 
     cout << "Please enter the day of the week on which the call was made: ";
     cin >> day;
     cout << "Please enter what time the call starts: ";
-    cin >> timeString;
+    cin >> hour >> sep >> minute;
     cout << "Please enter the duration of the call: ";
     cin >> numOfMinutes;
 
-    cout << timeString << endl;
+    // cout << timeString << endl;
 
     double cost;
     if ((day == "Sa") || (day == "Su"))
@@ -26,11 +28,8 @@ int main()
     }
     else
     {
-        int hour = atoi(timeString.substr(0, 2).c_str());
-        double minute = atoi(timeString.substr(3, 5).c_str()) / 60.0;
-        double time = hour + minute;
-        cout << hour << " " << minute << " " << time << endl;
-
+        double time = hour + minute / 60.0;
+        
         cost = numOfMinutes * (((time < 8) || (time > 18)) ? BILL2 : BILL3);
     }
 
