@@ -4,7 +4,7 @@ using namespace std;
 void printShiftedTriangle(int n, int m, char symbol);
 void printPineTree(int n, char symbol);
 
-const char space = ' ';
+const char SPACE = ' ';
 
 int main()
 {
@@ -28,7 +28,7 @@ void printShiftedTriangle(int n, int m, char symbol)
     {
         for (int j = 0; j < n - i + m; j++)
         {
-            cout << space;
+            cout << SPACE;
         }
         for (int j = 1; j <= 2 * i - 1; j++)
         {

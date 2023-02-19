@@ -4,7 +4,7 @@ using namespace std;
 
 void printDivisors(int num);
 
-const char space = ' ';
+const char SPACE = ' ';
 
 int main()
 {
@@ -20,18 +20,22 @@ int main()
 void printDivisors(int num)
 {
     int div = sqrt(num);
-    string divisors = to_string(div);
-    if (pow(div, 2) != num)
+    string divisors;
+    if (pow(div, 2) == num)
     {
-        divisors += (space + to_string(num / div));
+        divisors = to_string(div) + SPACE;
+        div--;   
     }
+    else
+        divisors = "";
 
-    while (--div >= 1)
+    while (div >= 1)
     {
         if (num % div == 0)
         {
-            divisors = to_string(div) + space + divisors + space + to_string(num / div);
+            divisors = to_string(div) + SPACE + divisors + to_string(num / div) + SPACE;
         }
+        div--;
     }
     cout << divisors;
 }
