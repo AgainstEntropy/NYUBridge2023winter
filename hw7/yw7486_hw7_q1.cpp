@@ -53,19 +53,10 @@ void printYearCalender(int year, int startingDay)
 }
 
 bool isLeapYear(int year) {
-    if (year % 4 == 0) {
-        if (year % 100 == 0) {
-            if (year % 400 == 0) {
-                return true;
-            } else {
-                return false;
-            }
-        } else {
-            return true;
-        }
-    } else {
+    if((year % 4 == 0 && year % 100 != 0) || year % 400 == 0)
+        return true;
+    else
         return false;
-    }
 }
 
 void monthInfo(int monthInt, string &monthString, int &numOfDays, bool leapyear)

@@ -7,7 +7,7 @@ int main()
     cout << "section a" << endl;
     cout << "Please enter a positive integer: ";
     cin >> numEven;
-   
+
     int counter = 0;
     while (counter++ < numEven)
     {

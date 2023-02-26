@@ -52,9 +52,9 @@ int main()
         {
             double solution1 = (-b - sqrt(delta)) / (2 * a),
                    solution2 = (-b + sqrt(delta)) / (2 * a);
-            cout << "This equation has two real solutions,"
-                 << " x1 = " << solution1 << ','
-                 << " x2 = " << solution2 << endl;
+            cout    << "This equation has two real solutions,"
+                    << " x1 = " << solution1 << ','
+                    << " x2 = " << solution2 << endl;
         }
     }
 

@@ -76,5 +76,5 @@ bool isPerfect(int num)
     int out_count_divs, out_sum_divs;
     analyzeDividors(num, out_count_divs, out_sum_divs);
 
-    return (num == out_sum_divs) ? true : false;
+    return (num == out_sum_divs);
 }

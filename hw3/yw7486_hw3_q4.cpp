@@ -12,10 +12,10 @@ int main()
 
     cout << "Please enter a Real number:\n";
     cin >> realNum;
-    cout << "Choose your rounding method:\n"
-         << "1. Floor round\n"
-         << "2. Ceiling round\n"
-         << "3. Round to the nearest whole number\n";
+    cout    << "Choose your rounding method:\n"
+            << "1. Floor round\n"
+            << "2. Ceiling round\n"
+            << "3. Round to the nearest whole number\n";
     cin >> roundMethod;
 
     switch (roundMethod)

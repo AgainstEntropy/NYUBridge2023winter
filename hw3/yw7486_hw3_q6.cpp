@@ -1,9 +1,9 @@
 #include <iostream>
 using namespace std;
 
-const double BILL1 = 0.4,
-             BILL2 = 0.25,
-             BILL3 = 0.15;
+const double    BILL1 = 0.4,
+                BILL2 = 0.25,
+                BILL3 = 0.15;
 
 int main()
 {
