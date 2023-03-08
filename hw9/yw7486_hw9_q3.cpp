@@ -22,14 +22,15 @@ int main()
     int* arr2 = getPosNums2(arr, arr_size, &arr_size2);
     printArray(arr2, arr_size2);
 
-    int* arr3 = new int[arr_size];
-    int arr_size3;
+    int *arr3 = new int[arr_size], arr_size3;
     getPosNums3(arr, arr_size, arr3, arr_size3);
     printArray(arr3, arr_size3);
+    delete [] arr3;
 
     int *arr4, arr_size4;
     getPosNums4(arr, arr_size, &arr4, &arr_size4);
     printArray(arr4, arr_size4);
+    delete [] arr4;
 
     return 0;
 }
