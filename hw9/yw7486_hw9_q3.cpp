@@ -27,8 +27,7 @@ int main()
     getPosNums3(arr, arr_size, arr3, arr_size3);
     printArray(arr3, arr_size3);
 
-    int* arr4 = new int[arr_size];
-    int arr_size4;
+    int *arr4, arr_size4;
     getPosNums4(arr, arr_size, &arr4, &arr_size4);
     printArray(arr4, arr_size4);
 
@@ -73,12 +72,14 @@ void getPosNums3(int* arr, int arrSize, int*& outPosArr, int& outPosArrSize)
 
 void getPosNums4(int* arr, int arrSize, int** outPosArrPtr, int* outPosArrSizePtr)
 {
+    int* temp = new int[arrSize];
     *outPosArrSizePtr = 0;
     for (int i = 0; i < arrSize; i++)
     {
         if (arr[i] > 0)
-            *outPosArrPtr[(*outPosArrSizePtr)++] = arr[i];
+            temp[(*outPosArrSizePtr)++] = arr[i];
     }
+    *outPosArrPtr = temp;
 }
 
 
