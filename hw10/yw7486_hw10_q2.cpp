@@ -13,10 +13,13 @@ int main() {
     int res_arr_size;
     int* missing_arr = findMissing(arr, 6, res_arr_size);
 
-    cout << "There are " << res_arr_size << " numbers missing, which are(is): ";
+    string be = ((res_arr_size == 1) ? " is " : " are ");
+    string noun = ((res_arr_size == 1) ? " number " : " numbers ");
+    cout << "There" << be << res_arr_size << noun << "missing, which" << be << ": ";
     printArray(missing_arr, res_arr_size);
 
     delete [] missing_arr;
+    missing_arr = nullptr;
 
     return 0;
 }
@@ -41,6 +44,7 @@ int* findMissing(int arr[], int n, int& resArrSize) {
         }
         if (miss_index == resArrSize) {
             delete [] flag_arr;
+            flag_arr = nullptr;
             break;
         }
     }

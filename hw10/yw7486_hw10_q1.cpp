@@ -16,6 +16,7 @@ int main() {
         cout << words_array[i] << endl;
     }
     delete [] words_array;
+    words_array = nullptr;
     
     return 0;
 }

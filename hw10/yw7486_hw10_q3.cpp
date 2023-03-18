@@ -13,7 +13,7 @@ const string SPACE = " ";
 const string PROMPT_1 = "Please enter a sequence of positive integers, each in a separate line.\n"
                         "End you input by typing -1.\n";
 const string PROMPT_2 = "Please enter a number you want to search.\n";
-const string NEGATIVE_MESSAGE = " does not show at all in the sequence.";
+const string NEGATIVE_MESSAGE = " does not show at all in the sequence.\n";
 
 int main() {
     cout<< "section a" <<endl;
@@ -52,9 +52,13 @@ void main1() {
     if (frequency == 0) {
         cout << to_string(search_num) + NEGATIVE_MESSAGE;
     } else {
-        cout << to_string(search_num) + " shows in lines ";
+        cout << to_string(search_num) + " shows in "
+             << ((frequency == 1) ? "line " : "lines ");
         printArray(indexs, frequency, ", ", ".\n");
     }
+
+    delete [] indexs;
+    indexs = nullptr;
 }
 
 void main2() {
@@ -81,7 +85,8 @@ void main2() {
     if (indexs.empty()) {
         cout << to_string(search_num) + NEGATIVE_MESSAGE;
     } else {
-        cout << to_string(search_num) + " shows in lines ";
+        cout << to_string(search_num) + " shows in "
+             << ((indexs.size() == 1) ? "line " : "lines ");
         printVector(indexs, ", ", ".\n");
     }
 }
