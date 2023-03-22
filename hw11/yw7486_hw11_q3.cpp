@@ -1,5 +1,4 @@
 # include <iostream>
-# include <cmath>
 using namespace std;
 
 int minInArray1(int arr[], int arrSize);
