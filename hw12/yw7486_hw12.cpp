@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <cmath>
+#include <algorithm>
 using namespace std;
 
 class Money
@@ -37,8 +38,8 @@ Money::Money(long dollars, int cents)
 
 Money::Money(double amount)
 {
-    long dollars = amount;
-    int cents = round((amount - dollars) * 100);
+    long dollars = static_cast<long>(amount);
+    int cents = static_cast<int>(round((amount - dollars) * 100));
     all_cents = dollars * 100 + cents;
 }
 
@@ -183,6 +184,10 @@ Money getDeposits() {
     return Money(total_deposit);
 }
 
+bool compareCheck(Check c1, Check c2) {
+    return (c1.get_num() < c2.get_num());
+}
+
 int main()
 {
     cout << "please enter the check number, amount on check [exclude the dollar signl and whether or not the check has been\n"
@@ -220,11 +225,13 @@ int main()
          << " and bank balance of " << balance << " is: " << balance - new_balance << endl;
 
     cout << "\nThe cashed checks are:\n";
+    sort(cashed_checks.begin(), cashed_checks.end(), compareCheck);
     for (Check c:cashed_checks) {
         cout << c << endl;
     }
 
     cout << "\nThe un-cashed checks are:\n";
+    sort(uncashed_checks.begin(), uncashed_checks.end(), compareCheck);
     for (Check c:uncashed_checks) {
         cout << c << endl;
     }
