@@ -289,6 +289,7 @@ void Grid::initialize(int num_ants, int num_bugs) {
     }
 
     print_world();
+    cout << "\nPress ENTER to continue\n";
 }
 
 void Grid::critters_step(char type) {
@@ -307,12 +308,15 @@ void Grid::step_forward(bool verbose) {
     step++;
     critters_step(DOODLEBUG); 
     if (verbose) { 
-        cout << "After bugs move";
-        print_world();
+        cout << "After bugs move:   ";
         print_statistics();
+        print_world();
     }
     critters_step(ANT); 
-    if (verbose) cout << "After ants move";
+    if (verbose) {
+        cout << "After ants move:   ";
+        print_statistics();
+    }
     print_world();
     reset_moved();
 }
@@ -326,14 +330,13 @@ void Grid::reset_moved() {
 }
 
 void Grid::print_world() const {
-    cout << "\nWorld at time step " << step << ":\n\n";
+    cout << "World at time step " << step << ":\n\n";
     for (int h = 0; h < WORLD_HEIGHT; h++) {
         for (int w=0; w < WORLD_WIDTH; w++) {
             cout << *(world[h][w]) << ' ';
         }
         cout << '\n';
     }
-    cout << "\nPress ENTER to continue\n";
 }
 
 void Grid::print_statistics() const {
@@ -349,7 +352,7 @@ void Grid::print_statistics() const {
             }
         }
     }
-    cout << "Ants: " << ants << "\tBugs: " << bugs << "\n";
+    cout << "Ants: " << ants << "  Bugs: " << bugs << "\n";
 }
 
 
@@ -361,7 +364,7 @@ int main() {
     char key;
     while ((key = cin.get()) && (key != 'q')) {
         grid.step_forward(false);
-        grid.print_statistics();
+        cout << "\nPress ENTER to continue\n";
     }
 
     return 0;
