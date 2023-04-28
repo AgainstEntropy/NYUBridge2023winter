@@ -1,18 +1,20 @@
 #include <iostream>
 #include <string>
 #include <fstream>
-#include <vector>
 
 using namespace std;
 
-void openInputFile(ifstream& inFile, string fileName) {
-	inFile.open(fileName);
+void openInputFile(ifstream& inFile) {
+	cout << "Enter the filename: ";
+    string file_name;
+    getline(cin, file_name);
+	inFile.open(file_name);
 	while (!inFile) {
 		cout << "FILE FAILED TO OPEN! " << endl;
 		cout << "What filename? ";
-		cin >> fileName;
+		cin >> file_name;
 		inFile.clear();
-		inFile.open(fileName);
+		inFile.open(file_name);
 	}
 }
 
@@ -189,22 +191,14 @@ bool LList<T>::isBillClear() const {
 template <class T>
 void LList<T>::pay() {
 	LListNode<T>* ptr = head->next;
-    T *p_owe, *p_accept;
-    // find someone to pay
-	while (ptr != tail) {
+    T *p_owe = nullptr, *p_accept = nullptr;
+    // find someone to pay and someone to accept
+	while ((!p_owe || !p_accept) && ptr != tail) {
         T* p = &(ptr->data);
-		if (p->owed > 0) {
+		if (!p_owe && p->owed > 0) {  // pay
             p_owe = p;
-            break;
-        }
-		ptr = ptr->next;
-	}
-    // find someone to accept
-	while (ptr != tail) {
-        T* p = &(ptr->data);
-		if (p->owed < 0) {
+        } else if (!p_accept && p->owed < 0) {  //accept
             p_accept = p;
-            break;
         }
 		ptr = ptr->next;
 	}
@@ -239,11 +233,8 @@ void LList<T>::splitBill() {
 
 
 int main() {
-    cout << "Enter the filename: ";
-    string file_name;
-    getline(cin, file_name);
     ifstream inFile;
-    openInputFile(inFile, file_name);
+    openInputFile(inFile);
 
     LList<Person> persons;
 
