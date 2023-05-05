@@ -1,5 +1,4 @@
 #include <iostream>
-#include <string>
 #include <vector>
 
 using namespace std;
@@ -14,14 +13,18 @@ public:
 	Queue() : start(0) {};
 	~Queue() {};
 
-	void push(T newdata) { data.push_back(newdata); }
-	T pop();
-	int size() { return data.size(); }
+	void enqueue(T newdata) { data.push_back(newdata); }
+	T dequeue();
+	int size() { return data.size() - start; }
 	int get_start() { return start; }
 };
 
 template<class T>
-T Queue<T>::pop() {
+T Queue<T>::dequeue() {
+	if (data.empty()) {
+		cout << "Queue is empty!" << endl;
+		return -1;
+	}
 	T temp = data[start++];
 	if (start == data.size()) {
 		data.clear();
@@ -34,11 +37,11 @@ T Queue<T>::pop() {
 int main() {
 	Queue<int> queue;
 	for (int i = 0; i < 5; i++) {
-		queue.push(i);
+		queue.enqueue(i);
 	}
 	
-	for (int i = 0; i < 5; i++) {
-		cout << queue.pop() << "\t(size: " << queue.size() << "  start: " << queue.get_start() << ")\n";
+	for (int i = 0; i < 6; i++) {
+		cout << queue.dequeue() << "\t(size: " << queue.size() << "  start: " << queue.get_start() << ")\n";
 	}
 
     return 0;
