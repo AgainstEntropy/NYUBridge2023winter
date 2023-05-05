@@ -27,6 +27,8 @@ char findLeft(char c) {
 		return '[';
 	case '}':
 		return '{';
+	default:
+		return c;
 	}
 }
 
