@@ -11,7 +11,7 @@ void openInputFile(ifstream& inFile) {
 	inFile.open(file_name);
 	while (!inFile) {
 		cout << "FILE FAILED TO OPEN! " << endl;
-		cout << "What filename? ";
+		cout << "Re-enter the filename: ";
 		cin >> file_name;
 		inFile.clear();
 		inFile.open(file_name);
@@ -142,7 +142,6 @@ template <class T>
 void LList<T>::printInfo(bool paid) {
 	LListNode<T>* ptr = head->next;
 	while (ptr != tail) {
-        // Person p = ptr->data;
         T p = ptr->data;
         if (paid) {
             cout << p.name << '\t' << p.paid << '\t' << p.owed << '\n';

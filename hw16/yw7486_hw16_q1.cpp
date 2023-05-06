@@ -35,7 +35,8 @@ char findLeft(char c) {
 bool checkSymbolBalance(ifstream& inFile) {
 	vector<char> symbols;
 	string line;
-    while (getline(inFile, line)) {
+    while (getline(inFile, line) && line != "begin") { }
+	while (getline(inFile, line) && line != "end") {
 		for (char c:line) {
 			if (c == '(' || c == '[' || c == '{') {
 				symbols.push_back(c);
@@ -47,7 +48,7 @@ bool checkSymbolBalance(ifstream& inFile) {
 				}
 			}
 		}
-    }
+	}
 	return true;
 }
 
