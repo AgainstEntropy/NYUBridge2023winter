@@ -181,24 +181,24 @@ void RBT<T>::singleCCR(RBTNode<T> *&node) {
 template <class T>
 void RBT<T>::fix(RBTNode<T> *curr) {
     RBTNode<T> *parent = curr->parent;
-    if (isBlack(parent) || parent == root) {  // trivial case, nothing to fix
-        return;
-    }
+
+    // trivial case, nothing to fix
+    if (isBlack(parent)) { return; }
 
     RBTNode<T> *grandparent = parent->parent;
     RBTNode<T> *uncle = isLeft(parent) ? grandparent->right : grandparent->left; 
 
     if (isBlack(uncle)) {
-        if (isLeft(curr)) {
+        if (isLeft(curr)) {  // case 1: uncle is black and current node is the leftchild (turn it into case 2 and fix)
             curr = parent;
             singleCR(curr);
             fix(curr);
-        } else {
+        } else {  // case 2: uncle is black and current node is the rightchild
             swapColor(parent);
             swapColor(grandparent);
             singleCCR(grandparent);
         }
-    } else {
+    } else {  // case 3: uncle is red, transfer the conflict to grandparent and fix recursively
         swapColor(parent);
         swapColor(uncle);
         swapColor(grandparent);
