@@ -117,7 +117,7 @@ public:
     int height() const { return root->height(); }
 
     bool isBlack(RBTNode<T> *node) const { return node == nullptr || node->color == BLACK; }
-    bool isLeft(RBTNode<T> *node) const { return node == node->parent->left; }
+    bool isRight(RBTNode<T> *node) const { return node == node->parent->right; }
 
     void fix(RBTNode<T> *curr);
 };
@@ -186,17 +186,17 @@ void RBT<T>::fix(RBTNode<T> *curr) {
     if (isBlack(parent)) { return; }
 
     RBTNode<T> *grandparent = parent->parent;
-    RBTNode<T> *uncle = isLeft(parent) ? grandparent->right : grandparent->left; 
+    RBTNode<T> *uncle = isRight(parent) ? grandparent->left : grandparent->right; 
 
     if (isBlack(uncle)) {
-        if (isLeft(curr)) {  // case 1: uncle is black and current node is the leftchild (turn it into case 2 and fix)
-            curr = parent;
-            singleCR(curr);
-            fix(curr);
-        } else {  // case 2: uncle is black and current node is the rightchild
+        if (isRight(curr)) {  // case 1: uncle is black and current node is the rightchild
             swapColor(parent);
             swapColor(grandparent);
             singleCCR(grandparent);
+        } else {  // case 2: uncle is black and current node is the leftchild (turn it into case 1 and fix)
+            curr = parent;
+            singleCR(curr);
+            fix(curr);
         }
     } else {  // case 3: uncle is red, transfer the conflict to grandparent and fix recursively
         swapColor(parent);
